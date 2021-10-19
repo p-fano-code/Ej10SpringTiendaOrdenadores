@@ -130,7 +130,7 @@ public class Ordenador {
 			totalRams += listaRam.get(i).getPrecio();
 		}
 		
-		total = totalPerifericos + totalRams + totalTarjetas + procesador.getPrecio()+ placaBase.getPrecio();
+		total = totalPerifericos + totalRams + totalTarjetas + procesador.getPrecio()+ placaBase.getPrecio()+precio;
 		
 		return total;
 		 
