@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Creacion de las RAM -->
+
+	<bean id="ramGraficaIntegrada" class="tienda.Ram">
+		<constructor-arg value="30.20"></constructor-arg>
+		<constructor-arg value="1.2"></constructor-arg>
+		<constructor-arg value="Tercera"></constructor-arg>
+	</bean>
+	<bean id="ramGraficaDedicada" class="tienda.Ram">
+		<constructor-arg value="50.20"></constructor-arg>
+		<constructor-arg value="2.4"></constructor-arg>
+		<constructor-arg value="Cuarta"></constructor-arg>
+	</bean>
+	<bean id="ramOrdenador" class="tienda.Ram">
+		<constructor-arg value="40.20"></constructor-arg>
+		<constructor-arg value="3.2"></constructor-arg>
+		<constructor-arg value="Quinta"></constructor-arg>
+	</bean>
+
+	<!-- Creacion de las Tarjetas Graficas -->
+
+	<bean id="graficaIntegrada" class="tienda.TarjetaGrafica">
+		<constructor-arg value="50.20"></constructor-arg>
+		<constructor-arg value="Intel"></constructor-arg>
+		<constructor-arg ref="ramGraficaIntegrada"></constructor-arg>
+		<constructor-arg value="Graphics"></constructor-arg>
+	</bean>
+	<bean id="graficaDedicada" class="tienda.TarjetaGrafica">
+		<constructor-arg value="150.20"></constructor-arg>
+		<constructor-arg value="AMD"></constructor-arg>
+		<constructor-arg ref="ramGraficaDedicada"></constructor-arg>
+		<constructor-arg value="Gaming Ultra"></constructor-arg>
+	</bean>
+
+	<!-- Creacion de los Perifericos -->
+	
+	<bean id="raton" class="tienda.Periferico">
+		<constructor-arg value="raton"></constructor-arg>
+		<constructor-arg value="12.7"></constructor-arg>
+		<constructor-arg value="Mars"></constructor-arg>
+	</bean>
+
+	<!-- Creacion de las listas -->
+	<!-- Lista de RAMS -->
+	<bean id="listaRams" class="java.util.ArrayList">
+		<constructor-arg>
+			<list value-type="tienda.Ram">
+				<ref bean="ramGraficaIntegrada" />
+				<ref bean="ramGraficaDedicada" />
+				<ref bean="ramOrdenador" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- Lista de Tarjetas Graficas -->
+	<bean id="listaGraficas" class="java.util.ArrayList">
+		<constructor-arg>
+			<list value-type="tienda.TarjetaGrafica">
+				<ref bean="graficaIntegrada" />
+				<ref bean="graficaDedicada" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- Lista de Perifericos-->
+	<bean id="listaPerifericos" class="java.util.ArrayList">
+		<constructor-arg>
+			<list value-type="tienda.Periferico">
+				<ref bean="raton" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- Creación del ordenador -->
+	
+	<bean id="ordenador" class="tienda.Ordenador">
+		<constructor-arg value="1200.5"></constructor-arg>
+		<constructor-arg value="Asus"></constructor-arg>
+		<constructor-arg>
+			<bean class="tienda.PlacaBase">
+				<constructor-arg value="250.70"></constructor-arg>
+				<constructor-arg value="Gigabyte"></constructor-arg>
+				<constructor-arg value="Gaming Ultra Durable"></constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg>
+			<bean class="tienda.Procesador">
+				<constructor-arg value="350.25"></constructor-arg>
+				<constructor-arg value="2.5"></constructor-arg>
+				<constructor-arg value="Intel"></constructor-arg>
+				<constructor-arg ref="graficaIntegrada"></constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg ref="listaRams"></constructor-arg>
+		<constructor-arg ref="listaPerifericos"></constructor-arg>
+		<constructor-arg ref="listaGraficas"></constructor-arg>
+	</bean>
+
+</beans>
